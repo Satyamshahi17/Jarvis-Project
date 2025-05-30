@@ -1,0 +1,1 @@
+ song = command.lower().split("play", 1)[1].strip()
