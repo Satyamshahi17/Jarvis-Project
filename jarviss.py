@@ -6,6 +6,7 @@ from gtts import gTTS  # Google Text-to-Speech library
 import pygame
 import os
 import requests
+from google import genai
 
 recognizer = sr.Recognizer
 engine = pyttsx3.init()
@@ -29,7 +30,7 @@ def speak(text):
 
     # Keep the program running until the music finishes
     while pygame.mixer.music.get_busy():
-        pygame.time.Clock().tick(10)
+        pygame.time.Clock().tick(10) 
 
     pygame.mixer.music.unload()
     os.remove("text.mp3")
@@ -77,7 +78,19 @@ def processCommand(command):
         speak("An error occurred while fetching the news.")
 
     else:
-         speak("I am not sure how to help with that.")
+     try:
+        client = genai.Client(api_key="AIzaSyCMjgPmegK0pErXWZlndWr8joYOjiu6njo")
+
+        response = client.models.generate_content(
+            model="gemini-2.0-flash", contents=f"{command}"
+        )
+        print(response.text)
+        speak(response.text)
+     except Exception as e:
+        print("LLM API Error:", e)
+        speak("Sorry, I couldn't process that request.")
+
+         
 
 if __name__ == "__main__":
     speak("Initializing Jarvis...")
@@ -105,3 +118,58 @@ if __name__ == "__main__":
             continue
 
 
+import tkinter as tk
+from tkinter import messagebox
+import threading
+
+def on_gui_command():
+    user_command = command_entry.get()
+    if user_command:
+        try:
+            processCommand(user_command)
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to process command: {e}")
+    else:
+        messagebox.showwarning("Input Needed", "Please enter a command.")
+
+# GUI setup
+def launch_gui():
+    global command_entry
+    root = tk.Tk()
+    root.title("Jarvis GUI")
+    root.geometry("400x200")
+
+    tk.Label(root, text="Enter your command:").pack(pady=10)
+    command_entry = tk.Entry(root, width=50)
+    command_entry.pack(pady=5)
+
+    tk.Button(root, text="Execute", command=on_gui_command).pack(pady=20)
+
+    root.mainloop()
+
+# Voice assistant loop
+def start_voice_assistant():
+    speak("Initializing Jarvis...")
+    while True:
+        r = sr.Recognizer()
+        print('Recognizing...')
+        try:
+            with sr.Microphone() as source:
+                print("Listening...")
+                audio = r.listen(source, timeout=2, phrase_time_limit=1)
+                word = r.recognize_google(audio)
+                if word.lower() == "jarvis":
+                    speak("Yes, how can I help you?")
+                    print("Listening for command...")
+                    audio = r.listen(source)
+                    command = r.recognize_google(audio)
+                    print(f"Command received: {command}")
+                    processCommand(command)
+        except Exception as e:
+            print("Error: " + str(e))
+            continue
+
+# Start both GUI and voice assistant in parallel
+if __name__ == "__main__":
+    threading.Thread(target=start_voice_assistant, daemon=True).start()
+    launch_gui()
