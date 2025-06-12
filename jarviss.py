@@ -55,7 +55,7 @@ def processCommand(command):
         else:
             speak("Sorry, I couldn't find that song.")
     elif "news" in command.lower().strip():
-     newsapi = 'd40e87a85ebe26926e120ab1041d64ac'
+     newsapi = 'Use-your-apiKey'
      try:
         r = requests.get(f"https://gnews.io/api/v4/top-headlines?country=in&category=general&apikey={newsapi}")
 
@@ -79,7 +79,7 @@ def processCommand(command):
 
     else:
      try:
-        client = genai.Client(api_key="AIzaSyCMjgPmegK0pErXWZlndWr8joYOjiu6njo")
+        client = genai.Client(api_key="Use-your-apiKey")
 
         response = client.models.generate_content(
             model="gemini-2.0-flash", contents=f"{command}"
