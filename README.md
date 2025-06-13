@@ -11,7 +11,7 @@ This assistant demonstrates real-world integration of speech recognition, APIs, 
 ## 🛠️ Features
 
 - 🎤 Listens for the wake word: `"Jarvis"`
-- 🌐 Opens websites like Google, YouTube
+- 🌐 Opens websites and apps like Google, YouTube, Spotify
 - 🎵 Plays music using a custom song dictionary
 - 📰 Fetches and speaks top 5 news headlines (via GNews API)
 - 🤖 Handles general queries using **Google Gemini AI**
