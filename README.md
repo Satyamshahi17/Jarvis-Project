@@ -4,7 +4,7 @@
 
 **Jarvis** is an AI-powered voice assistant built in Python. It listens for a wake word ("Jarvis"), understands commands, speaks back in Hindi, and can open apps or websites, play songs, fetch news, or answer general questions using **Google Gemini (LLM)**.
 
-This assistant demonstrates real-world integration of speech recognition, APIs, TTS (Text-to-Speech), and AI models — perfect for beginners and hobbyists.
+This assistant demonstrates real-world integration of speech recognition, APIs, TTS (Text-to-Speech), and AI models.
 
 ---
 
