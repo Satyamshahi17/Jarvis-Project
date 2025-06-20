@@ -1,6 +1,6 @@
-# 🧠 Jarvis – Python Voice Assistant
+# Jarvis – Python Voice Assistant
 
-## 🔍 Description
+## Description
 
 **Jarvis** is an AI-powered voice assistant built in Python. It listens for a wake word ("Jarvis"), understands commands, speaks back in Hindi, and can open apps or websites, play songs, fetch news, or answer general questions using **Google Gemini (LLM)**.
 
@@ -8,19 +8,19 @@ This assistant demonstrates real-world integration of speech recognition, APIs, 
 
 ---
 
-## 🛠️ Features
+## Features
 
-- 🎤 Listens for the wake word: `"Jarvis"`
-- 🌐 Opens websites and apps like Google, YouTube, Spotify
-- 🎵 Plays music using a custom song dictionary
-- 📰 Fetches and speaks top 5 news headlines (via GNews API)
-- 🤖 Handles general queries using **Google Gemini AI**
-- 🔊 Speaks responses in **Hindi** using Google Text-to-Speech (gTTS)
-- 🪟 Opens Spotify app from your desktop
+-  Listens for the wake word: `"Jarvis"`
+-  Opens websites and apps like Google, YouTube, Spotify
+-  Plays music using a custom song dictionary
+-  Fetches and speaks top 5 news headlines (via GNews API)
+-  Handles general queries using **Google Gemini AI**
+-  Speaks responses in **Hindi** using Google Text-to-Speech (gTTS)
+-  Opens Spotify app from your desktop
 
 ---
 
-## ⚙️ Requirements
+## Requirements
 
 Install the required Python libraries using pip:
 
